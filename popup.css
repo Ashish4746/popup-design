@@ -1,0 +1,435 @@
+/**
+ * Moksh CAD — Human + AI Portrait Modal Popup
+ * Scoped B2B Engineering Styles based on reference moksh-cad-human-ai-popup.html
+ */
+
+/* ==========================================================================
+   Body Scroll Lock
+   ========================================================================== */
+body.moksh-modal-open {
+  overflow: hidden !important;
+  touch-action: none !important;
+}
+
+/* ==========================================================================
+   Modal Backdrop
+   ========================================================================== */
+#mokshModalBackdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 999999 !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 20px !important;
+  background: rgba(9, 22, 48, 0.52) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease !important;
+  box-sizing: border-box !important;
+}
+
+#mokshModalBackdrop.is-active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* ==========================================================================
+   Portrait Popup Modal Card with 3D Perspective & Floating
+   ========================================================================== */
+#mokshModalPopup {
+  position: relative !important;
+  width: min(100%, 470px) !important;
+  max-height: min(92vh, 860px) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-radius: 28px !important;
+  background: linear-gradient(155deg, #ffffff 0%, #f7faff 72%, #edf4ff 100%) !important;
+  box-shadow: 0 32px 100px rgba(3, 24, 67, 0.28), 0 6px 22px rgba(12, 47, 103, 0.12) !important;
+  transform-style: preserve-3d !important;
+  opacity: 0 !important;
+  transform: perspective(1100px) translateY(24px) scale(0.97) !important;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  isolation: isolate !important;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  color: #10234d !important;
+  box-sizing: border-box !important;
+  will-change: transform !important;
+}
+
+#mokshModalBackdrop.is-active #mokshModalPopup {
+  opacity: 1 !important;
+  transform: perspective(1100px) translateY(0) scale(1) !important;
+  animation: mokshPopupFloat 6s ease-in-out 0.8s infinite !important;
+}
+
+@keyframes mokshPopupFloat {
+  0%, 100% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: -6px;
+  }
+}
+
+/* Subtle ambient glow behind popup */
+#mokshModalPopup::before {
+  content: "" !important;
+  position: absolute !important;
+  z-index: -1 !important;
+  width: 270px !important;
+  height: 270px !important;
+  right: -80px !important;
+  top: 80px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle, rgba(40, 104, 173, 0.22), rgba(40, 104, 173, 0) 68%) !important;
+  pointer-events: none !important;
+}
+
+/* ==========================================================================
+   Close Button
+   ========================================================================== */
+#mokshModalClose {
+  position: absolute !important;
+  z-index: 25 !important;
+  top: 14px !important;
+  right: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  min-height: 38px !important;
+  border: 1px solid rgba(21, 49, 91, 0.12) !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  color: #314565 !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: 0 4px 14px rgba(18, 45, 88, 0.1) !important;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease !important;
+  outline: none !important;
+}
+
+#mokshModalClose:hover {
+  transform: rotate(90deg) scale(1.05) !important;
+  background: #eef5ff !important;
+  color: #10234d !important;
+}
+
+#mokshModalClose:focus-visible {
+  outline: 2px solid #2868ad !important;
+  outline-offset: 2px !important;
+}
+
+#mokshModalClose svg {
+  width: 16px !important;
+  height: 16px !important;
+  stroke: #314565 !important;
+  stroke-width: 2.4 !important;
+}
+
+/* ==========================================================================
+   Top Visual Stage
+   ========================================================================== */
+.moksh-portrait-visual {
+  position: relative !important;
+  min-height: 295px !important;
+  padding: 24px 14px 0 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background:
+    radial-gradient(ellipse at 52% 70%, rgba(40, 104, 173, 0.16), transparent 58%),
+    linear-gradient(180deg, #f8fbff 0%, #edf5ff 100%) !important;
+  border-bottom: 1px solid rgba(40, 104, 173, 0.1) !important;
+  border-radius: 28px 28px 0 0 !important;
+  transform-style: preserve-3d !important;
+}
+
+/* Deep Blue Circular Arc on the opposite (left) side */
+.moksh-portrait-visual::before {
+  content: "" !important;
+  position: absolute !important;
+  width: 260px !important;
+  height: 260px !important;
+  top: 20px !important;
+  left: -75px !important;
+  right: auto !important;
+  border-radius: 50% !important;
+  background: linear-gradient(145deg, #387ec7 0%, #2868ad 60%, #1c528f 100%) !important;
+  opacity: 0.98 !important;
+  box-shadow: 0 12px 30px rgba(40, 104, 173, 0.38) !important;
+  z-index: 1 !important;
+}
+
+/* Concentric ring detail on the right */
+.moksh-portrait-visual::after {
+  content: "" !important;
+  position: absolute !important;
+  width: 190px !important;
+  height: 190px !important;
+  top: 74px !important;
+  right: -90px !important;
+  left: auto !important;
+  border: 1px solid rgba(40, 104, 173, 0.25) !important;
+  border-radius: 50% !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+/* Moving Moksh Logo Emblem inside the blue round on the opposite (left) side */
+.moksh-portrait-arc-emblem {
+  position: absolute !important;
+  top: 32px !important;
+  left: 20px !important;
+  right: auto !important;
+  width: 62px !important;
+  height: 62px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 2px solid rgba(40, 104, 173, 0.28) !important;
+  box-shadow: 0 8px 22px rgba(10, 30, 60, 0.28), 0 0 18px rgba(40, 104, 173, 0.42) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 3 !important;
+  animation: mokshArcEmblemFloat 5.5s ease-in-out infinite !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+
+@keyframes mokshArcEmblemFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) rotate(3deg) scale(1.05);
+  }
+}
+
+.moksh-portrait-arc-emblem img {
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12)) !important;
+}
+
+/* Foreground Cutout Hero Image */
+.moksh-portrait-visual .moksh-cutout-hero {
+  position: relative !important;
+  z-index: 4 !important;
+  display: block !important;
+  width: 112% !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: 0 -6% -3px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 16px 20px rgba(12, 45, 96, 0.22)) !important;
+  transform: translateZ(26px) !important;
+  animation: mokshImageFloat 5s ease-in-out infinite !important;
+}
+
+@keyframes mokshImageFloat {
+  0%, 100% {
+    transform: translateY(0) translateZ(26px);
+  }
+  50% {
+    transform: translateY(-6px) translateZ(26px);
+  }
+}
+
+/* ==========================================================================
+   Bottom Content Area
+   ========================================================================== */
+.moksh-portrait-content {
+  position: relative !important;
+  padding: 26px 30px 30px !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+}
+
+.moksh-portrait-eyebrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 12px !important;
+  color: #2868ad !important;
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+}
+
+.moksh-portrait-eyebrow::before {
+  content: "" !important;
+  width: 22px !important;
+  height: 2px !important;
+  border-radius: 2px !important;
+  background: #2868ad !important;
+  display: inline-block !important;
+}
+
+.moksh-portrait-title {
+  margin: 0 !important;
+  color: #31a92f !important;
+  font-size: clamp(28px, 5.5vw, 36px) !important;
+  font-weight: 600 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.03em !important;
+  text-transform: uppercase !important;
+}
+
+.moksh-portrait-title span {
+  display: block !important;
+  margin-top: 5px !important;
+  color: #2868ad !important;
+  font-weight: 600 !important;
+}
+
+.moksh-portrait-desc {
+  margin: 14px 0 24px !important;
+  color: #63718a !important;
+  font-size: 14px !important;
+  line-height: 1.62 !important;
+  font-weight: 400 !important;
+}
+
+/* ==========================================================================
+   Action CTAs
+   ========================================================================== */
+.moksh-portrait-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+#mokshModalPopup .moksh-portrait-primary-btn,
+a#mokshModalPrimaryCta.moksh-portrait-primary-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  min-height: 52px !important;
+  padding: 0 22px !important;
+  border-radius: 14px !important;
+  background: linear-gradient(105deg, #2868ad 0%, #347ecb 100%) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 10px 22px rgba(40, 104, 173, 0.28) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  cursor: pointer !important;
+  border: none !important;
+  box-sizing: border-box !important;
+}
+
+#mokshModalPopup .moksh-portrait-primary-btn:hover,
+a#mokshModalPrimaryCta.moksh-portrait-primary-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 28px rgba(40, 104, 173, 0.38) !important;
+  color: #ffffff !important;
+}
+
+#mokshModalPopup .moksh-portrait-secondary-btn,
+a#mokshModalSecondaryLink.moksh-portrait-secondary-btn {
+  align-self: center !important;
+  color: #111827 !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+  transition: color 0.2s ease, text-decoration 0.2s ease !important;
+  padding: 4px 8px !important;
+}
+
+#mokshModalPopup .moksh-portrait-secondary-btn:hover,
+a#mokshModalSecondaryLink.moksh-portrait-secondary-btn:hover {
+  color: #000000 !important;
+  text-decoration: underline !important;
+}
+
+/* ==========================================================================
+   Mobile Responsiveness
+   ========================================================================== */
+@media (max-width: 520px) {
+  #mokshModalBackdrop {
+    padding: 14px !important;
+  }
+
+  #mokshModalPopup {
+    width: min(100%, 410px) !important;
+    border-radius: 24px !important;
+    max-height: 94vh !important;
+  }
+
+  .moksh-portrait-visual {
+    min-height: 240px !important;
+    padding-top: 18px !important;
+    border-radius: 24px 24px 0 0 !important;
+  }
+
+  .moksh-portrait-visual::before {
+    width: 220px !important;
+    height: 220px !important;
+    top: 15px !important;
+    left: -80px !important;
+    right: auto !important;
+  }
+
+  .moksh-portrait-arc-emblem {
+    top: 25px !important;
+    left: 14px !important;
+    right: auto !important;
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .moksh-portrait-arc-emblem img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .moksh-portrait-visual .moksh-cutout-hero {
+    width: 118% !important;
+    margin-left: -9% !important;
+    margin-right: -9% !important;
+  }
+
+  .moksh-portrait-content {
+    padding: 22px 22px 26px !important;
+  }
+
+  .moksh-portrait-title {
+    font-size: 30px !important;
+  }
+
+  .moksh-portrait-desc {
+    font-size: 13px !important;
+    margin: 12px 0 20px !important;
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion Preferences
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  #mokshModalBackdrop,
+  #mokshModalPopup,
+  .moksh-portrait-visual .moksh-cutout-hero,
+  .moksh-portrait-arc-emblem,
+  #mokshModalPopup .moksh-portrait-primary-btn {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
