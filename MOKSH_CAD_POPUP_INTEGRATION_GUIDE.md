@@ -44,7 +44,7 @@ This guide details the architecture, design tokens, files, and step-by-step inst
   ```
   *(Font weight: Semibold 600, with `AI SPEED.` in `#31a92f` green and `HUMAN PRECISION.` in `#2868ad` blue)*
 - **Supporting Body**:
-  > *Combine the power of AI with human expertise to simplify workflows, improve accuracy, and get more done.*
+  > *<span style="color:#31a92f;font-weight:600;">AI with human expertise.</span> Combine the power of AI with human precision to simplify workflows, improve accuracy, and get more done.*
 - **Primary CTA**: `Speak to our AI Expert →`  
   Target URL: `https://www.mokshcad.com/contact-us/`
 - **Secondary CTA**: `Explore Our CAD Services` *(Styled in crisp black `#111827`)*  

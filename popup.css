@@ -189,38 +189,45 @@ body.moksh-modal-open {
 /* Moving Moksh Logo Emblem inside the blue round on the opposite (left) side */
 .moksh-portrait-arc-emblem {
   position: absolute !important;
-  top: 32px !important;
+  top: 30px !important;
   left: 20px !important;
   right: auto !important;
-  width: 62px !important;
-  height: 62px !important;
+  width: 64px !important;
+  height: 64px !important;
   border-radius: 50% !important;
-  background: rgba(255, 255, 255, 0.96) !important;
-  border: 2px solid rgba(40, 104, 173, 0.28) !important;
-  box-shadow: 0 8px 22px rgba(10, 30, 60, 0.28), 0 0 18px rgba(40, 104, 173, 0.42) !important;
+  background: #ffffff !important;
+  border: 2.5px solid rgba(40, 104, 173, 0.35) !important;
+  box-shadow: 0 8px 24px rgba(10, 30, 60, 0.22), 0 0 16px rgba(40, 104, 173, 0.28) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   z-index: 3 !important;
   animation: mokshArcEmblemFloat 5.5s ease-in-out infinite !important;
-  backdrop-filter: blur(6px) !important;
-  -webkit-backdrop-filter: blur(6px) !important;
+  will-change: transform !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
 }
 
 @keyframes mokshArcEmblemFloat {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg) scale(1);
+    transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-6px) rotate(3deg) scale(1.05);
+    transform: translateY(-7px) rotate(-3deg);
   }
 }
 
 .moksh-portrait-arc-emblem img {
-  width: 40px !important;
-  height: 40px !important;
+  width: 44px !important;
+  height: 44px !important;
+  display: block !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12)) !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: crisp-edges !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
 }
 
 /* Foreground Cutout Hero Image */
@@ -302,6 +309,14 @@ body.moksh-modal-open {
   font-size: 14px !important;
   line-height: 1.62 !important;
   font-weight: 400 !important;
+}
+
+.moksh-green-text,
+.moksh-portrait-desc .moksh-green-text,
+.moksh-portrait-desc strong.moksh-green-text,
+.moksh-portrait-eyebrow .moksh-green-text {
+  color: #31a92f !important;
+  font-weight: 600 !important;
 }
 
 /* ==========================================================================
